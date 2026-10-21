@@ -15,8 +15,8 @@ CDV '24, Gopalan et al., and HKRR.
 - New notes arrive as phone photos: save the photo in `notes/`, transcribe
   faithfully into a new or existing section file, and flag anything that
   was changed or interpreted (e.g. a range or symbol that looked wrong).
-- Build with `latexmk -pdf talk.tex`. Build output (`talk.pdf`) is committed
-  so the latest deck is viewable on GitHub from a phone.
+- Build with `latexmk -pdf talk.tex`. Build output (including `talk.pdf`) is
+  not committed: derivative files stay out of the repo.
 - Small, descriptive commits ("add HKRR multiaccuracy definition").
 
 ## Style
