@@ -1,0 +1,37 @@
+% ---------- Minimalist setup ----------
+\usetheme{default}
+\usefonttheme{professionalfonts}
+\usepackage{amsmath,amssymb}
+
+\definecolor{ink}{HTML}{1F2328}
+\definecolor{accent}{HTML}{2F5D9E}
+\definecolor{muted}{HTML}{8A9099}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+  \hfill\usebeamerfont{footline}\color{muted}\scriptsize\insertframenumber\hspace{1.2em}\vspace{0.8em}}
+\setbeamercolor{normal text}{fg=ink}
+\setbeamercolor{frametitle}{fg=ink}
+\setbeamercolor{title}{fg=ink}
+\setbeamercolor{subtitle}{fg=muted}
+\setbeamercolor{author}{fg=ink}
+\setbeamercolor{date}{fg=muted}
+\setbeamercolor{alerted text}{fg=accent}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamertemplate{frametitle}{\vspace{1.2em}\insertframetitle\par\vspace{-0.2em}%
+  {\color{accent}\rule{2.5em}{1.5pt}}}
+\setbeamertemplate{itemize items}{\color{muted}--}
+\setlength{\parskip}{0.4em}
+
+% ---------- Notation ----------
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\err}{\mathrm{err}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+
+\title{How Global Calibration Strengthens Multiaccuracy}
+\author{Author Name}
+\institute{}
+\date{MSR}

@@ -1,0 +1,56 @@
+% Source: notes/2026-10-21-agnostic-learning.jpg
+
+\begin{frame}{Agnostic learning}
+  \textcolor{muted}{As distinct from the realizable setting.}
+
+  \vspace{1em}
+  Data
+  \[
+    \big((x_1,y_1),\dots,(x_n,y_n)\big) \sim \D^n
+  \]
+
+  Want a classifier $h$ with low error
+  \[
+    \err(h) = \Prob\big[h(x) \neq y\big].
+  \]
+
+  \pause
+  \vspace{0.5em}
+  \alert{This may be impossible, or very hard.}
+\end{frame}
+
+\begin{frame}{Agnostic learning: a relative guarantee}
+  Data $\big((x_1,y_1),\dots,(x_n,y_n)\big) \sim \D^n$
+
+  Comparator class $\F$ of functions $f : \X \to \{0,1\}$
+
+  \vspace{1em}
+  With probability at least $1-\delta$,
+  \[
+    \err(h) \;\le\; \min_{f \in \F} \err(f) \;+\; \varepsilon .
+  \]
+
+  \vspace{0.5em}
+  {\color{muted}The excess-risk framework of statistical learning theory.}
+\end{frame}
+
+\begin{frame}{Agnostic learning: predicting the truth}
+  Learn a predictor $p : \X \to [0,1]$.
+
+  \vspace{0.3em}
+  The holy grail:
+  \[
+    p(x) = \E[\,y \mid x\,]
+  \]
+  {\color{muted}Learn the observed data up to irreducible noise.}
+
+  \pause
+  \vspace{0.8em}
+  We will learn some $\hat p$:
+  \[
+    \begin{array}{rcl}
+      d(p,\hat p) & \longrightarrow & \text{epistemic uncertainty}\\[0.4em]
+      d(\hat p, y) & \longrightarrow & \text{aleatoric uncertainty}
+    \end{array}
+  \]
+\end{frame}
