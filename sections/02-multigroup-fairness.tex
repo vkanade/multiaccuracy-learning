@@ -1,0 +1,28 @@
+% Source: notes/2026-10-21-multigroup-calibration.jpg
+
+\begin{frame}{Multigroup fairness notions: calibration}
+  A prediction problem: $(x,y) \sim \D$, \ $y \in \{0,1\}$
+  \textcolor{muted}{\quad e.g.\ the outcome of an exam}
+
+  \vspace{0.5em}
+  A predictor $p : \X \to [0,1]$ gives the probability of a positive outcome.
+
+  \pause
+  \vspace{0.8em}
+  $p$ is \alert{calibrated} if
+  \[
+    \E[\,y \mid p(x)\,] = p(x).
+  \]
+
+  \pause
+  Expected calibration error:
+  \[
+    \ECE(p) = \E\Big[\,\big|\,\E[\,y \mid p(x)\,] - p(x)\,\big|\,\Big]
+  \]
+\end{frame}
+
+\begin{frame}{Expected accuracy error}
+  \[
+    \EAE(p) = \big|\,\E[\,p(x) - y\,]\,\big|
+  \]
+\end{frame}
