@@ -5,33 +5,33 @@
 
 \section{Multigroup fairness and learning}
 
-\begin{frame}{Relation to learning}
+\begin{frame}{Relation to learning: changing perspectives}
   We've viewed groups $\G$ as subgroups of the population
   \textcolor{muted}{(potentially overlapping).}
 
   Equally, think of them as a class of functions
-  $\C$, \ $c : \X \to \{0,1\}$.
+  $\C$, \ $c : \X \to \{0,1\}$:\\
+  a hypothesis class, as in agnostic learning
+  \textcolor{muted}{(halfspaces, decision trees, \dots)}.
 
   \pause
   \vspace{0.8em}
   Suppose $p$ is \alert{multiaccurate} for $\C$:
   \[
-    \E\big[\,c(x)\,(y - p(x))\,\big] \approx 0 \qquad \forall c \in \C .
+    \big|\,\E\big[\,c(x)\,(y - p(x))\,\big]\,\big| \approx 0 \qquad \forall c \in \C .
   \]
 
   An \alert{indistinguishability} condition: no function in $\C$ is
   correlated with the residual $y - p(x)$.
 \end{frame}
 
-\begin{frame}{For multicalibration}
+\begin{frame}{Multicalibration as agnostic learning}
   Suppose $p : \X \to [0,1]$ is \alert{multicalibrated} for $\C$:
   \[
-    \E\big[\,c(x)\,(y - p(x)) \mid p(x) = v\,\big] \approx 0
+    \big|\,\E\big[\,c(x)\,(y - p(x)) \mid p(x) = v\,\big]\,\big| \approx 0
     \qquad \forall c \in \C,\ \forall v .
   \]
-\end{frame}
 
-\begin{frame}{Multicalibration as agnostic learning}
   \begin{columns}[c]
     \begin{column}{0.45\textwidth}
       \centering
@@ -49,7 +49,7 @@
     \begin{column}{0.53\textwidth}
       On every strip,
       \[
-        \E\big[\,c(x)\,(y - v)\,\big] \approx 0 .
+        \big|\,\E\big[\,c(x)\,(y - v)\,\big]\,\big| \approx 0 .
       \]
 
       To functions in $\C$, on a strip, $(x,y)$ looks like $(x,\tilde y)$
@@ -72,6 +72,10 @@
   \[
     \E\big[\,(p(x) - y)^2\,\big] .
   \]
+
+  \vspace{0.5em}
+  \textcolor{muted}{Key step: find a $c \in \C$ ($g \in \G$) correlated with
+  $y - p(x)$, a learning problem.}
 \end{frame}
 
 \begin{frame}{Weak agnostic learning}
@@ -83,6 +87,8 @@
     \item if there is a $c \in \C$ with $\err(c) \le \tfrac12 - \alpha$,
     \item then output $h : \X \to \{0,1\}$ with $\err(h) \le \tfrac12 - \beta$.
   \end{itemize}
+  \textcolor{muted}{Equivalently: $c$ has correlation $\ge 2\alpha$ with the labels.
+  Weak learners find correlations.}
 
   \pause
   \vspace{0.6em}
@@ -97,9 +103,22 @@
     \big|\,\E\big[\,c(x)\,(y - p(x))\,\big]\,\big| \ \text{noticeable.}
   \]
 
-  Use a weak agnostic learner to find $h$.
+  \alert{Relabel}: keep $x$, replace $y$ by $\tilde y \in \{0,1\}$ with
+  \[
+    \Prob[\tilde y = 1 \mid x, y] = \tfrac12\big(1 + y - p(x)\big),
+    \quad \text{so} \quad
+    \E[\,2\tilde y - 1 \mid x, y\,] = y - p(x)
+  \]
+  and hence
+  \[
+    \E\big[\,c(x)\,(y - p(x))\,\big] = \E\big[\,c(x)\,(2\tilde y - 1)\,\big] .
+  \]
+  Run a weak agnostic learner on $(x, \tilde y)$ to find $h$.
 
-  \pause
+  \textcolor{muted}{The marginal over $\X$ is unchanged: only the labels change.}
+\end{frame}
+
+\begin{frame}{Correcting the violation}
   Can show that
   \[
     \E\Big[\big(\Pi_{[0,1]}\big(p(x) + \eta\, h(x)\big) - y\big)^2\Big]
@@ -107,13 +126,47 @@
     \E\big[\,(p(x) - y)^2\,\big] .
   \]
   \textcolor{muted}{$\Pi_{[0,1]}(f)$ clips the range of $f$ to $[0,1]$.}
+
+  \vspace{0.8em}
+  \textcolor{muted}{Repeat until the auditor finds nothing. The squared loss
+  is $\ge 0$ and drops noticeably each round, so this stops.}
 \end{frame}
 
 \begin{frame}{Multigroup fairness \& learning}
-  Multicalibration with $\C$ gives a strong form of agnostic learning
-  \textcolor{muted}{(also called swap agnostic learning).}
+  \begin{columns}[c]
+    \begin{column}{0.58\textwidth}
+      Multicalibration with $\C$ gives a strong form of agnostic learning:
+      \alert{swap agnostic learning}
+      \textcolor{muted}{(Gopalan--Kim--Reingold '23)}.
+
+      \vspace{0.4em}
+      $p$ competes with the best $c \in \C$ \alert{separately on each
+      level set} of $p$, not just one $c$ globally.
+      \textcolor{muted}{(Slide 14)}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.8]
+        \draw[space] (0,0) ellipse (2.3 and 1.3);
+        \node[lab] at (2.2,1.3) {$\X$};
+        \foreach \x in {-1.6,-0.6,0.15,0.85,1.7} {
+          \pgfmathsetmacro{\h}{1.3*sqrt(1-(\x/2.3)^2)}
+          \draw[strip] (\x,-\h) -- (\x,\h);
+        }
+        \foreach \x/\i in {-1.1/1,-0.225/2,0.5/3,1.275/4} {
+          \node[font=\scriptsize, text=accent] at (\x,0) {$c_{\i}$};
+        }
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.6em}
+  \textcolor{muted}{But costly: auditing every level set takes many calls
+  to the weak learner.}
 
   \pause
   \vspace{1.5em}
   \alert{What about just multiaccuracy?}
+
+  \textcolor{muted}{Much cheaper to achieve: avoids having to audit level set by level set.}
 \end{frame}

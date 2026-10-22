@@ -27,7 +27,8 @@
 
 % ---------- Outline ----------
 % Outline after the title, then again at each later section with the
-% current section in the accent colour and the rest in grey.
+% current section in the accent colour and the rest in grey. Outline
+% slides are unnumbered and don't advance the slide count.
 \setbeamertemplate{section in toc}{%
   {\color{muted}\inserttocsectionnumber.}\hspace{0.6em}\inserttocsection\par}
 \setbeamercolor{section in toc}{fg=ink}
@@ -36,7 +37,8 @@
 \AtBeginSection{%
   \ifnum\value{section}>1
     {\setbeamercolor{section in toc}{fg=accent}
-     \begin{frame}{Outline}
+     \setbeamertemplate{footline}{}
+     \begin{frame}[noframenumbering]{Outline}
        \tableofcontents[currentsection]
      \end{frame}}
   \fi}

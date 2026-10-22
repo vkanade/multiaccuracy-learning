@@ -18,9 +18,12 @@
   \pause
   \vspace{1em}
   \alert{Multiaccuracy by itself doesn't give agnostic learning.}
+
+  \textcolor{muted}{Note: $p$ is far from calibrated:
+  $\E[\,y \mid p(x) = 1\,] = \tfrac12$.}
 \end{frame}
 
-\begin{frame}{Multiaccuracy + calibration suffices}
+\begin{frame}{Multiaccuracy keeps $p$ away from $\tfrac12$}
   \textcolor{muted}{$\cor(y, c) = \E\big[(2y-1)\,c(x)\big]$, \ $c : \X \to [-1,1]$}
 
   \vspace{0.4em}
@@ -29,13 +32,30 @@
     \E\big[\,|p(x) - \tfrac12|\,\big] \ \ge\ \tfrac12\,\cor(y, c) - \tau .
   \]
 
-  \textbf{Proposition 2.} If $p$ has calibration error $\tau$, then
+  \vspace{0.4em}
+  If some $c \in \C$ is correlated with $y$, a multiaccurate $p$
+  \alert{can't be close to the constant $\tfrac12$}.
+\end{frame}
+
+\begin{frame}{Calibration turns distance from $\tfrac12$ into correlation}
+  \textbf{Proposition 2.} If $\ECE(p) \le \tau$ \textcolor{muted}{(slide 7)}, then
   \[
     \cor\big(y, \operatorname{sign}(2p - 1)\big) \ \ge\ 2\,\E\big[\,|p(x) - \tfrac12|\,\big] - 2\tau .
   \]
 
+  \vspace{0.4em}
+  A calibrated $p$ that is far from $\tfrac12$
+  \alert{can't be uncorrelated with $y$}.
+
   \pause
+  \vspace{0.6em}
   \textbf{Together:} \
-  $\cor\big(y, \operatorname{sign}(2p-1)\big) \ \ge\ \max_{c \in \C} \cor(y, c) - 4\tau$
-  \quad \textcolor{muted}{(strong agnostic learning)}
+  $\cor\big(y, \operatorname{sign}(2p-1)\big) \ \ge\ \max_{c \in \C} \cor(y, c) - 4\tau$.
+
+  For $\pm1$-valued $c$, \ $\cor(y, c) = 1 - 2\,\err(c)$, so this is
+  \alert{agnostic learning} \textcolor{muted}{(slide 3)}:
+  \[
+    \err\big(\operatorname{sign}(2p-1)\big) \ \le\ \min_{c \in \C} \err(c) + 2\tau .
+  \]
+  \textcolor{muted}{Far cheaper to achieve calibrated multiaccuracy than multicalibration (slide 19).}
 \end{frame}

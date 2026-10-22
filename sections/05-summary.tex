@@ -1,17 +1,42 @@
 % Source: notes/2026-10-22-summary.jpg (note 20: "add the key takeaways")
 % Takeaways drafted from the slides above; edit freely.
 
+% No outline slide before the summary (more slides may follow it).
+\AtBeginSection{}
 \section{Summary}
 
 \begin{frame}{Summary}
   \begin{itemize}
-    \item Multiaccuracy and multicalibration are \alert{indistinguishability}
-          conditions: no $c \in \C$ correlates with the residual $y - p(x)$.
-    \item Multicalibration gives (swap) agnostic learning: a computational
-          analogue of learning up to irreducible noise.
-    \item Multiaccuracy alone is weak: it can hold while $\err(p) = \tfrac12$
-          and some $c \in \C$ has error $\tfrac14$.
-    \item \alert{Adding global calibration suffices}: multiaccuracy + calibration
-          gives strong agnostic learning, via $\operatorname{sign}(2p-1)$.
+    \item \alert{Multigroup fairness}: accuracy in expectation
+          (multiaccuracy) or calibration (multicalibration) on every group
+          in a rich class $\C$.
+    \item Both are \alert{indistinguishability} conditions: no $c \in \C$
+          correlates with $y - p(x)$, globally (MA) or on every level set
+          of $p$ (MC).
+    \item Achieving them \alert{reduces to weak agnostic learning} of $\C$,
+          with relabelling that keeps the marginal over $\X$
+          \textcolor{muted}{(KK09)}.
+    \item Multicalibration gives \alert{swap agnostic learning}, but is costly.
+    \item \alert{Calibrated multiaccuracy} is cheaper and already gives
+          agnostic learning; multiaccuracy alone does not
+          \textcolor{muted}{(CGKR)}.
   \end{itemize}
+\end{frame}
+
+% Drafted from memory, not from notes: check every citation before the talk.
+\begin{frame}{Further connections
+  {\normalsize\mdseries\textcolor{muted}{(not covered today)}}}
+  \begin{itemize}
+    \item \alert{Outcome indistinguishability}
+          \textcolor{muted}{(Dwork--Kim--Reingold--Rothblum--Yona '21; \dots)}
+    \item \alert{Omniprediction}: one predictor, good for many losses
+          \textcolor{muted}{(Gopalan--Kalai--Reingold--Sharan--Wieder '22;
+          CGKRST '26; \dots)}
+    \item \alert{Complexity theory}: regularity, hardcore lemmas, pseudoentropy
+          \textcolor{muted}{(Dwork--Lee--Lin--Tankala '23; Casacuberta--Dwork--Vadhan '24;
+          CGKR '25; \dots)}
+  \end{itemize}
+
+  \vspace{0.6em}
+  \textcolor{muted}{\dots\ and many other works.}
 \end{frame}

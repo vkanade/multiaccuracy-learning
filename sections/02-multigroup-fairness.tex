@@ -59,30 +59,14 @@
   \end{tikzpicture}
   \end{center}
 
-  Want, for every $g \in \G$,
+  Want accuracy in expectation \alert{on every group} $g \in \G$:
   \[
-    \big|\,\E[\,p(x) - y \mid x \in g\,]\,\big| \ \text{small}
+    \big|\,\E[\,p(x) - y \mid x \in g\,]\,\big| \approx \text{small}
   \]
   \textcolor{muted}{e.g.\ state-school students, rural students, \dots}
 \end{frame}
 
-\begin{frame}{Multiaccuracy}
-  Groups $\G = \{g_1, \dots, g_k\}$, possibly overlapping.
-
-  \vspace{0.3em}
-  Treat each $g$ also as its indicator function $g : \X \to \{0,1\}$.
-
-  \vspace{0.8em}
-  $p$ is \alert{$\alpha$-multiaccurate} if
-  \[
-    \big|\,\E[\,g(x)\,(p(x) - y)\,]\,\big| \le \alpha
-    \qquad \forall g \in \G .
-  \]
-
-  \textcolor{muted}{This avoids the problem of conditioning on very small groups.}
-\end{frame}
-
-% Source: notes/2026-10-22-multicalibration.jpg (notes 8-9)
+% Source: notes/2026-10-22-multicalibration.jpg (note 8)
 
 \begin{frame}{Accuracy in expectation \& multiaccuracy}
   \begin{center}
@@ -104,18 +88,29 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Multicalibration}
-  For any group $g$ and any $v \in [0,1]$,
+\begin{frame}{Multiaccuracy}
+  Groups $\G = \{g_1, \dots, g_k\}$, possibly overlapping.
+
+  \vspace{0.3em}
+  Treat each $g$ also as its indicator function $g : \X \to \{0,1\}$.
+
+  \vspace{0.8em}
+  $p$ is \alert{$\tau$-multiaccurate} if
   \[
-    \E\big[\,g(x)\,(y - p(x)) \mid p(x) = v\,\big] \approx 0 .
+    \big|\,\E[\,g(x)\,(p(x) - y)\,]\,\big| \le \tau
+    \qquad \forall g \in \G .
   \]
 
-  Calibration must hold even conditioned on group membership.
+  {\color{muted}
+  \[
+    \E[\,g(x)\,(p(x) - y)\,] = \Prob[x \in g] \cdot \E[\,p(x) - y \mid x \in g\,]
+  \]
+  Small groups get proportionally more slack: no conditioning on very small groups.}
 
   \pause
-  \vspace{1em}
-  \alert{Fairness:} it is not OK to be calibrated overall, but overly
-  optimistic on some groups and overly pessimistic on others.
+  \vspace{0.6em}
+  \alert{Fairness:} no group is systematically over- or under-estimated
+  on average.
 \end{frame}
 
 % Source: notes/2026-10-22-relation-to-learning.jpg (note 10)
@@ -146,4 +141,25 @@
     \end{scope}
   \end{tikzpicture}
   \end{center}
+\end{frame}
+
+% Source: notes/2026-10-22-multicalibration.jpg (note 9)
+
+\begin{frame}{Multicalibration}
+  For any group $g$ and any $v \in [0,1]$,
+  \[
+    \big|\,\E[\,p(x) - y \mid p(x) = v,\ x \in g\,]\,\big| \approx 0 .
+  \]
+  Calibration must hold even conditioned on group membership.
+
+  \vspace{0.5em}
+  As with multiaccuracy, avoid conditioning on small groups:
+  \[
+    \big|\,\E[\,g(x)\,(p(x) - y) \mid p(x) = v\,]\,\big| \approx 0 .
+  \]
+
+  \pause
+  \vspace{1em}
+  \alert{Fairness:} a score of $v$ should mean the same in every group:
+  ``70\%'' should mean 70\% for state-school students too.
 \end{frame}
