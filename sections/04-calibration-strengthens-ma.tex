@@ -1,0 +1,39 @@
+% Source: notes/2026-10-22-ma-plus-calibration.jpg (notes 18-19)
+% Propositions on the second slide follow the CGKR paper
+% (arXiv:2504.15206, Lemmas 4.5-4.6, Theorem 4.7).
+
+\begin{frame}{Multiaccuracy by itself is weak}
+  $\D$ uniform on $\{0,1\}^n$; \ $\C$ = functions of $x_1, \dots, x_{n-1}$.
+  \[
+    y = \MAJ(x_1, x_2, x_n) \qquad
+    p(x) = \MAJ(x_1, x_2, 1 - x_n)
+  \]
+
+  \textbf{Theorem} \textcolor{muted}{(CGKR '25)}\\
+  $p$ is multiaccurate w.r.t.\ $\C$, but $\err(p) = \tfrac12$,
+  \ while $\err(c) = \tfrac14$ for $c = \AND(x_1, x_2)$.
+
+  \pause
+  \vspace{1em}
+  \alert{Multiaccuracy by itself doesn't give agnostic learning.}
+\end{frame}
+
+\begin{frame}{Multiaccuracy + calibration suffices}
+  \textcolor{muted}{$\cor(y, c) = \E\big[(2y-1)\,c(x)\big]$, \ $c : \X \to [-1,1]$}
+
+  \vspace{0.4em}
+  \textbf{Proposition 1.} If $p$ is $\tau$-multiaccurate w.r.t.\ $\C$, then for every $c \in \C$
+  \[
+    \E\big[\,|p(x) - \tfrac12|\,\big] \ \ge\ \tfrac12\,\cor(y, c) - \tau .
+  \]
+
+  \textbf{Proposition 2.} If $p$ has calibration error $\tau$, then
+  \[
+    \cor\big(y, \operatorname{sign}(2p - 1)\big) \ \ge\ 2\,\E\big[\,|p(x) - \tfrac12|\,\big] - 2\tau .
+  \]
+
+  \pause
+  \textbf{Together:} \
+  $\cor\big(y, \operatorname{sign}(2p-1)\big) \ \ge\ \max_{c \in \C} \cor(y, c) - 4\tau$
+  \quad \textcolor{muted}{(strong agnostic learning)}
+\end{frame}

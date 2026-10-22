@@ -2,6 +2,8 @@
 \usetheme{default}
 \usefonttheme{professionalfonts}
 \usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usetikzlibrary{calc}
 
 \definecolor{ink}{HTML}{1F2328}
 \definecolor{accent}{HTML}{2F5D9E}
@@ -32,6 +34,21 @@
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\ECE}{\mathrm{ECE}}
 \newcommand{\EAE}{\mathrm{EAE}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\cor}{\mathrm{cor}}
+\newcommand{\MAJ}{\mathrm{MAJ}}
+\newcommand{\AND}{\mathrm{AND}}
+\newcommand{\Ber}{\mathrm{Bernoulli}}
+
+% ---------- Diagram styles ----------
+\tikzset{
+  space/.style={draw=ink, line width=0.6pt},
+  group/.style={draw=accent, line width=0.8pt},
+  strip/.style={draw=ink, line width=0.6pt},
+  lab/.style={font=\small, text=ink},
+  note/.style={font=\footnotesize, text=muted, align=center},
+}
 
 \title{How Global Calibration Strengthens Multiaccuracy}
 \author{Author Name}

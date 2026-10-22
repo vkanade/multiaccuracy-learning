@@ -1,0 +1,15 @@
+% Source: notes/2026-10-22-summary.jpg (note 20: "add the key takeaways")
+% Takeaways drafted from the slides above; edit freely.
+
+\begin{frame}{Summary}
+  \begin{itemize}
+    \item Multiaccuracy and multicalibration are \alert{indistinguishability}
+          conditions: no $c \in \C$ correlates with the residual $y - p(x)$.
+    \item Multicalibration gives (swap) agnostic learning: a computational
+          analogue of learning up to irreducible noise.
+    \item Multiaccuracy alone is weak: it can hold while $\err(p) = \tfrac12$
+          and some $c \in \C$ has error $\tfrac14$.
+    \item \alert{Adding global calibration suffices}: multiaccuracy + calibration
+          gives strong agnostic learning, via $\operatorname{sign}(2p-1)$.
+  \end{itemize}
+\end{frame}
