@@ -59,6 +59,36 @@
 \newcommand{\AND}{\mathrm{AND}}
 \newcommand{\Ber}{\mathrm{Bernoulli}}
 
+% Noisy labelled sample used on the agnostic-learning slides
+% (blue dots y = 1, hollow grey y = 0; the labels overlap).
+\newcommand{\noisysample}{%
+  \draw[space] (0,0) ellipse (2.2 and 1.5);
+  \node[lab] at (2.1,1.45) {$\X$};
+  \foreach \x/\y in {-1.5/0.3, -1.2/-0.5, -0.9/0.8, -0.7/-0.1,
+                     -1.6/-0.2, -0.4/0.5, -0.2/-0.8, 0.3/0.2,
+                     -1.0/0.1, 0.6/-0.4, -0.5/-0.5, 0.9/0.7} {
+    \fill[accent] (\x,\y) circle (2.2pt);
+  }
+  \foreach \x/\y in {1.5/0.2, 1.2/-0.6, 0.8/0.1, 1.0/-0.1,
+                     1.6/-0.3, 0.4/0.8, 0.2/-0.3, -0.3/0.1,
+                     1.3/0.6, -0.8/-0.7, 0.5/-0.9, -0.6/0.9} {
+    \draw[muted, line width=0.8pt] (\x,\y) circle (2.2pt);
+  }}
+\newcommand{\noisylegend}{%
+  {\footnotesize
+   \textcolor{accent}{$\bullet$}~$y = 1$ \quad
+   \textcolor{muted}{$\circ$}~$y = 0$}}
+
+% Cross-references to slides by their visible number, e.g. "slide 14".
+% Put \slidelabel{name} inside a frame; \slideref{name} prints its number.
+\makeatletter
+\newcommand{\slidelabel}[1]{%
+  \ifnum\beamer@slideinframe=1
+    \protected@write\@auxout{}{\string\newlabel{slide:#1}{{\insertframenumber}{\thepage}}}%
+  \fi}
+\makeatother
+\newcommand{\slideref}[1]{\ref{slide:#1}}
+
 % ---------- Diagram styles ----------
 \tikzset{
   space/.style={draw=ink, line width=0.6pt},
@@ -71,4 +101,4 @@
 \title{Connections between Multigroup Fairness and Learning}
 \author{Varun Kanade}
 \institute{University of Oxford}
-\date{}
+\date{Microsoft Research \textperiodcentered\ 23 October 2026}% venue (and date) line on the title slide

@@ -4,36 +4,67 @@
 \section{Agnostic learning}
 
 \begin{frame}{Agnostic learning}
-  \textcolor{muted}{As distinct from the realizable setting.}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \textcolor{muted}{As distinct from the realizable setting.}
 
-  \vspace{1em}
-  Data
-  \[
-    \big((x_1,y_1),\dots,(x_n,y_n)\big) \sim \D^n
-  \]
+      \vspace{1em}
+      Data $\big((x_1,y_1),\dots,(x_n,y_n)\big) \sim \D^n$
 
-  Want a classifier $h$ with low error
-  \[
-    \err(h) = \Prob\big[h(x) \neq y\big].
-  \]
+      \vspace{0.5em}
+      Want a classifier $h$ with low error
+      \[
+        \err(h) = \Prob\big[h(x) \neq y\big].
+      \]
 
-  \pause
-  \vspace{0.5em}
-  \alert{This may be impossible, or very hard.}
+      \vspace{0.5em}
+      \uncover<2->{\alert{This may be impossible, or very hard.}}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      % Overlapping labels: no boundary separates them.
+      \begin{tikzpicture}[scale=0.9]
+        \noisysample
+        \draw[dashed, ink] (0.1,1.4) .. controls (-0.1,0.4) and (0.4,-0.4) .. (0.15,-1.45);
+        \node[lab] at (0.45,1.75) {$h$};
+      \end{tikzpicture}
+
+      \vspace{0.3em}
+      \noisylegend
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Agnostic learning: a relative guarantee}
-  Data $\big((x_1,y_1),\dots,(x_n,y_n)\big) \sim \D^n$
+\begin{frame}{Agnostic learning: a relative guarantee}\slidelabel{relative-guarantee}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      Data $\big((x_1,y_1),\dots,(x_n,y_n)\big) \sim \D^n$
 
-  Comparator class $\F$ of functions $f : \X \to \{0,1\}$
+      \vspace{0.3em}
+      Comparator class $\F$ of functions $f : \X \to \{0,1\}$
 
-  \vspace{1em}
-  With probability at least $1-\delta$,
-  \[
-    \err(h) \;\le\; \min_{f \in \F} \err(f) \;+\; \varepsilon .
-  \]
+      \vspace{1em}
+      With probability at least $1-\delta$,
+      \[
+        \err(h) \;\le\;
+        \underbrace{\min_{f \in \F} \err(f)}_{\textcolor{muted}{\text{best in class}}}
+        \;+\; \varepsilon .
+      \]
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.9]
+        \noisysample
+        \draw[accent, line width=1pt] (0.45,1.45) -- (-0.05,-1.45);
+        \node[lab, text=accent] at (0.55,1.75) {best $f \in \F$};
+      \end{tikzpicture}
 
-  \vspace{0.5em}
+      \vspace{0.3em}
+      \noisylegend
+    \end{column}
+  \end{columns}
+
+  \vspace{0.8em}
   {\color{muted}The excess-risk framework of statistical learning theory.}
 \end{frame}
 
@@ -57,20 +88,20 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Agnostic learning: the predictor view}
+\begin{frame}{Agnostic learning: the predictor view}\slidelabel{predictor-view}
   Holy grail: given $x$, $y$ is just a coin flip.
   \[
-    y \mid x \;\sim\; \Ber\big(p^*(x)\big)
+    y \mid \alert{x} \;\mathrel{\textcolor{accent}{\sim}}\; \Ber\big(p^*(x)\big)
   \]
 
   \pause
   \vspace{0.5em}
   \alert{Computational analogue}: we can't get $p^*$, but we can get some $p$ with
   \[
-    y \mid p(x) \;\approx_{\C}\; \Ber\big(p(x)\big)
+    y \mid \alert{p(x)} \;\mathrel{\textcolor{accent}{\approx_{\C}}}\; \Ber\big(p(x)\big)
   \]
   {\color{muted}$\approx_{\C}$: indistinguishable to every function in $\C$.}
 
   \vspace{1.5em}
-  \textcolor{muted}{We'll return to this after a detour through multigroup fairness.}
+  \textcolor{muted}{We'll return to this on slide~\slideref{mc-agnostic}, after a detour through multigroup fairness.}
 \end{frame}

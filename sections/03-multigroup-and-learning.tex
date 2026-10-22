@@ -12,7 +12,7 @@
   Equally, think of them as a class of functions
   $\C$, \ $c : \X \to \{0,1\}$:\\
   a hypothesis class, as in agnostic learning
-  \textcolor{muted}{(halfspaces, decision trees, \dots)}.
+  \textcolor{muted}{(slide~\slideref{relative-guarantee}; halfspaces, decision trees, \dots)}.
 
   \pause
   \vspace{0.8em}
@@ -21,11 +21,11 @@
     \big|\,\E\big[\,c(x)\,(y - p(x))\,\big]\,\big| \approx 0 \qquad \forall c \in \C .
   \]
 
-  An \alert{indistinguishability} condition: no function in $\C$ is
-  correlated with the residual $y - p(x)$.
+  An \alert{indistinguishability} condition: no $c \in \C$ correlates
+  with the residual $y - p(x)$.
 \end{frame}
 
-\begin{frame}{Multicalibration as agnostic learning}
+\begin{frame}{Multicalibration as agnostic learning}\slidelabel{mc-agnostic}
   Suppose $p : \X \to [0,1]$ is \alert{multicalibrated} for $\C$:
   \[
     \big|\,\E\big[\,c(x)\,(y - p(x)) \mid p(x) = v\,\big]\,\big| \approx 0
@@ -36,7 +36,10 @@
     \begin{column}{0.45\textwidth}
       \centering
       \begin{tikzpicture}
-        \fill[muted!18] (0.15,-1.4) rectangle (0.85,1.4);
+        \begin{scope}
+          \clip (0,0) ellipse (2.3 and 1.3);
+          \fill[muted!18] (0.15,-1.3) rectangle (0.85,1.3);
+        \end{scope}
         \draw[space] (0,0) ellipse (2.3 and 1.3);
         \node[lab] at (2.2,1.3) {$\X$};
         \foreach \x in {-1.6,-0.6,0.15,0.85,1.7} {
@@ -59,6 +62,7 @@
 
   \vspace{1.2em}
   \alert{A computational analogue of learning up to irreducible noise.}
+  \textcolor{muted}{(slide~\slideref{predictor-view})}
 \end{frame}
 
 \begin{frame}{How to construct such predictors}
@@ -74,11 +78,11 @@
   \]
 
   \vspace{0.5em}
-  \textcolor{muted}{Key step: find a $c \in \C$ ($g \in \G$) correlated with
-  $y - p(x)$, a learning problem.}
+  \alert{Key step:} find a $c \in \C$ ($g \in \G$) correlated with
+  $y - p(x)$, a learning problem.
 \end{frame}
 
-\begin{frame}{Weak agnostic learning}
+\begin{frame}{Weak agnostic learning}\slidelabel{weak-learning}
   $\D$ a distribution over $\X \times \{0,1\}$; \ $\C$ a class of functions.
 
   \vspace{0.6em}
@@ -94,7 +98,7 @@
   \vspace{0.6em}
   \textbf{Theorem} \textcolor{muted}{(Kalai--Kanade '09; Feldman '10)}\\
   Weak agnostic learning is equivalent to strong agnostic learning,
-  even for a fixed marginal distribution over $\X$.
+  \alert{even for a fixed marginal distribution over $\X$}.
 \end{frame}
 
 \begin{frame}{Auditing for multiaccuracy violations}
@@ -115,24 +119,26 @@
   \]
   Run a weak agnostic learner on $(x, \tilde y)$ to find $h$.
 
-  \textcolor{muted}{The marginal over $\X$ is unchanged: only the labels change.}
+  The \alert{marginal over $\X$ is unchanged}: only the labels change
+  \textcolor{muted}{(slide~\slideref{weak-learning})}.
 \end{frame}
 
 \begin{frame}{Correcting the violation}
-  Can show that
+  Update:
   \[
-    \E\Big[\big(\Pi_{[0,1]}\big(p(x) + \eta\, h(x)\big) - y\big)^2\Big]
-    \ \text{is noticeably smaller than} \
-    \E\big[\,(p(x) - y)^2\,\big] .
+    p \;\leftarrow\; \Pi_{[0,1]}\big(p + \eta\, h\big)
   \]
   \textcolor{muted}{$\Pi_{[0,1]}(f)$ clips the range of $f$ to $[0,1]$.}
 
+  \vspace{0.5em}
+  Can show that the squared loss $\E\big[\,(p(x) - y)^2\,\big]$ drops noticeably.
+
   \vspace{0.8em}
-  \textcolor{muted}{Repeat until the auditor finds nothing. The squared loss
-  is $\ge 0$ and drops noticeably each round, so this stops.}
+  Repeat until the auditor finds nothing. The loss is $\ge 0$,
+  so \alert{this stops}.
 \end{frame}
 
-\begin{frame}{Multigroup fairness \& learning}
+\begin{frame}{Multigroup fairness \& learning}\slidelabel{swap}
   \begin{columns}[c]
     \begin{column}{0.58\textwidth}
       Multicalibration with $\C$ gives a strong form of agnostic learning:
@@ -142,7 +148,7 @@
       \vspace{0.4em}
       $p$ competes with the best $c \in \C$ \alert{separately on each
       level set} of $p$, not just one $c$ globally.
-      \textcolor{muted}{(Slide 14)}
+      \textcolor{muted}{(slide~\slideref{mc-agnostic})}
     \end{column}
     \begin{column}{0.38\textwidth}
       \centering
@@ -161,12 +167,12 @@
   \end{columns}
 
   \vspace{0.6em}
-  \textcolor{muted}{But costly: auditing every level set takes many calls
-  to the weak learner.}
+  But \alert{costly}: auditing every level set takes many calls
+  to the weak learner.
 
   \pause
   \vspace{1.5em}
   \alert{What about just multiaccuracy?}
 
-  \textcolor{muted}{Much cheaper to achieve: avoids having to audit level set by level set.}
+  \alert{Much cheaper} to achieve: avoids having to audit level set by level set.
 \end{frame}

@@ -4,11 +4,11 @@
 
 \section{Calibration strengthens multiaccuracy}
 
-\begin{frame}{Multiaccuracy by itself is weak}
+\begin{frame}{Multiaccuracy by itself is weak}\slidelabel{ma-weak}
   $\D$ uniform on $\{0,1\}^n$; \ $\C$ = functions of $x_1, \dots, x_{n-1}$.
   \[
     y = \MAJ(x_1, x_2, x_n) \qquad
-    p(x) = \MAJ(x_1, x_2, 1 - x_n)
+    p(x) = \MAJ(x_1, x_2, \textcolor{accent}{1 - x_n})
   \]
 
   \textbf{Theorem} \textcolor{muted}{(CGKR '25)}\\
@@ -19,8 +19,8 @@
   \vspace{1em}
   \alert{Multiaccuracy by itself doesn't give agnostic learning.}
 
-  \textcolor{muted}{Note: $p$ is far from calibrated:
-  $\E[\,y \mid p(x) = 1\,] = \tfrac12$.}
+  And $p$ is \alert{far from calibrated}:
+  $\E[\,y \mid p(x) = 1\,] = \tfrac12$.
 \end{frame}
 
 \begin{frame}{Multiaccuracy keeps $p$ away from $\tfrac12$}
@@ -35,10 +35,15 @@
   \vspace{0.4em}
   If some $c \in \C$ is correlated with $y$, a multiaccurate $p$
   \alert{can't be close to the constant $\tfrac12$}.
+
+  \vspace{0.8em}
+  \textcolor{muted}{In slide~\slideref{ma-weak}'s example, $p \in \{0,1\}$ is as far
+  from $\tfrac12$ as possible, yet $\err(p) = \tfrac12$.\\
+  Distance from $\tfrac12$ alone isn't enough.}
 \end{frame}
 
 \begin{frame}{Calibration turns distance from $\tfrac12$ into correlation}
-  \textbf{Proposition 2.} If $\ECE(p) \le \tau$ \textcolor{muted}{(slide 7)}, then
+  \textbf{Proposition 2.} If $\ECE(p) \le \tau$ \textcolor{muted}{(slide~\slideref{calibration})}, then
   \[
     \cor\big(y, \operatorname{sign}(2p - 1)\big) \ \ge\ 2\,\E\big[\,|p(x) - \tfrac12|\,\big] - 2\tau .
   \]
@@ -53,9 +58,12 @@
   $\cor\big(y, \operatorname{sign}(2p-1)\big) \ \ge\ \max_{c \in \C} \cor(y, c) - 4\tau$.
 
   For $\pm1$-valued $c$, \ $\cor(y, c) = 1 - 2\,\err(c)$, so this is
-  \alert{agnostic learning} \textcolor{muted}{(slide 3)}:
+  \alert{agnostic learning} \textcolor{muted}{(slide~\slideref{relative-guarantee})}:
   \[
-    \err\big(\operatorname{sign}(2p-1)\big) \ \le\ \min_{c \in \C} \err(c) + 2\tau .
+    {\setlength{\fboxrule}{0.8pt}\setlength{\fboxsep}{6pt}%
+    \fcolorbox{accent}{white}{$\displaystyle
+      \err\big(\operatorname{sign}(2p-1)\big) \ \le\ \min_{c \in \C} \err(c) + 2\tau
+    $}}
   \]
-  \textcolor{muted}{Far cheaper to achieve calibrated multiaccuracy than multicalibration (slide 19).}
+  \textcolor{muted}{Far cheaper to achieve calibrated multiaccuracy than multicalibration (slide~\slideref{swap}).}
 \end{frame}

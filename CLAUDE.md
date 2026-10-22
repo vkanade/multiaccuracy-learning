@@ -2,7 +2,7 @@
 
 A 20–25 minute talk (plus 5–10 min questions) at MSR, given by Varun Kanade
 (University of Oxford). An overview of the connections between multigroup
-fairness and learning, covering HKRR, Gopalan et al. and CDV '24. The
+fairness and learning, covering HKRR and Gopalan et al. The
 speaker's own work features only briefly: the main results of CGKR ("How
 Global Calibration Strengthens Multiaccuracy") and some results from KK09.
 
@@ -29,4 +29,6 @@ Global Calibration Strengthens Multiaccuracy") and some results from KK09.
 - Few words per slide; let the maths carry it. Use `\pause` sparingly.
 - Use the macros in `preamble.tex` (`\X`, `\D`, `\F`, `\err`, `\Prob`, `\E`)
   rather than raw symbols.
+- Never hard-code slide numbers: put `\slidelabel{name}` in the target frame
+  and write `slide~\slideref{name}`.
 - Budget roughly one slide per minute: aim for ~20–25 content slides total.

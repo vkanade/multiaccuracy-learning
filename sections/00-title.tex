@@ -5,8 +5,20 @@
   \vspace{0.6em}{\color{accent}\rule{3em}{2pt}}\par
   \vspace{1.2em}
   {\large\insertauthor}\par
-  \vspace{0.2em}{\color{muted}\insertinstitute}
+  \vspace{0.2em}{\color{muted}\insertinstitute}\par
+  \vspace{1.2em}{\color{muted}\small\insertdate}
   \vfill
+  % Faint preview of the overlapping-groups picture, bottom right.
+  \begin{tikzpicture}[remember picture, overlay]
+    \begin{scope}[shift={($(current page.south east)+(-3.6,2.1)$)},
+                  opacity=0.35]
+      \draw[space] (0,0) ellipse (2.6 and 1.1);
+      \draw[group] (-1.0,0.1) ellipse (1.0 and 0.65);
+      \draw[group] (-0.1,-0.1) ellipse (0.9 and 0.7);
+      \draw[group] (1.0,0.12) ellipse (1.0 and 0.6);
+      \draw[group] (-0.7,0.0) ellipse (0.5 and 0.38);
+    \end{scope}
+  \end{tikzpicture}
 \end{frame}}
 
 {\setbeamertemplate{footline}{}
