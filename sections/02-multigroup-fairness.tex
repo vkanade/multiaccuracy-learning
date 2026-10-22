@@ -1,11 +1,13 @@
 % Source: notes/2026-10-21-multigroup-calibration.jpg (accuracy in expectation, calibration)
 
-\begin{frame}{Multigroup fairness notions: accuracy in expectation}
+\section{Multigroup fairness}
+
+\begin{frame}{Accuracy in expectation}
   A prediction problem: $(x,y) \sim \D$, \ $y \in \{0,1\}$
   \textcolor{muted}{\quad e.g.\ the outcome of an exam}
 
   \vspace{0.5em}
-  A predictor $p : \X \to [0,1]$ gives the probability of a positive outcome.
+  $p(x)$: predicted probability of a positive outcome.
 
   \pause
   \vspace{0.8em}
@@ -19,9 +21,12 @@
   \[
     \EAE(p) = \big|\,\E[\,p(x) - y\,]\,\big|
   \]
+
+  \textcolor{muted}{A global notion, and a very weak requirement:
+  the constant $p \equiv \E[y]$ satisfies it.}
 \end{frame}
 
-\begin{frame}{Multigroup fairness notions: calibration}
+\begin{frame}{Calibration}
   $p$ is \alert{calibrated} if
   \[
     \E[\,y \mid p(x)\,] = p(x).
@@ -32,6 +37,9 @@
   \[
     \ECE(p) = \E\Big[\,\big|\,\E[\,y \mid p(x)\,] - p(x)\,\big|\,\Big]
   \]
+
+  \textcolor{muted}{Also a global notion: the constant $p \equiv \E[y]$
+  is calibrated too.}
 \end{frame}
 
 % Source: notes/2026-10-22-multiaccuracy.jpg (notes 6-7)

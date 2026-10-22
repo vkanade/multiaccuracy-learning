@@ -1,13 +1,17 @@
-# MSR talk: How Global Calibration Strengthens Multiaccuracy
+# Talk: Connections between Multigroup Fairness and Learning
 
-A 20–25 minute talk (plus 5–10 min questions) at MSR, based on the paper
-"How Global Calibration Strengthens Multiaccuracy". Also covers prior work:
-CDV '24, Gopalan et al., and HKRR.
+A 20–25 minute talk (plus 5–10 min questions) at MSR, given by Varun Kanade
+(University of Oxford). An overview of the connections between multigroup
+fairness and learning, covering HKRR, Gopalan et al. and CDV '24. The
+speaker's own work features only briefly: the main results of CGKR ("How
+Global Calibration Strengthens Multiaccuracy") and some results from KK09.
 
 ## Layout
 - `talk.tex` — main file; only `\input`s the preamble and sections.
 - `preamble.tex` — theme, colours, notation macros. Add new macros here.
 - `sections/NN-name.tex` — one file per section, numbered in talk order.
+  Each opens with a `\section{...}`, which drives the outline slides
+  (shown after the title and at the start of every later section).
 - `notes/` — photos of handwritten notes, named `YYYY-MM-DD-topic.jpg`.
   Each section file starts with a `% Source:` comment naming its photo(s).
 

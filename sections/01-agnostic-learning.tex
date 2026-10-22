@@ -1,6 +1,8 @@
 % Source: notes/2026-10-21-agnostic-learning.jpg (slides 1-3)
 %         notes/2026-10-21-multigroup-calibration.jpg (slide 4)
 
+\section{Agnostic learning}
+
 \begin{frame}{Agnostic learning}
   \textcolor{muted}{As distinct from the realizable setting.}
 
@@ -41,28 +43,33 @@
   \vspace{0.3em}
   The holy grail:
   \[
-    p(x) = \E[\,y \mid x\,]
+    p(x) = p^*(x) = \E[\,y \mid x\,]
   \]
-  {\color{muted}Learn the observed data up to irreducible noise.}
 
   \pause
   \vspace{0.8em}
-  We will learn some $\hat p$:
-  \[
-    \begin{array}{rcl}
-      d(p,\hat p) & \longrightarrow & \text{epistemic uncertainty}\\[0.4em]
-      d(\hat p, y) & \longrightarrow & \text{aleatoric uncertainty}
-    \end{array}
-  \]
+  Two sources of uncertainty:
+  \begin{itemize}
+    \item \alert{Epistemic}: $p \neq p^*$, since $p^*$ may be too complex
+      and we see only finite data.
+    \item \alert{Aleatoric}: $p^* \neq y$, since $y$ is inherently random
+      given $x$.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Agnostic learning: the predictor view}
-  $p$ may be extremely complex, and so impossible to learn
-  for computational and statistical reasons.
+  Holy grail: given $x$, $y$ is just a coin flip.
+  \[
+    y \mid x \;\sim\; \Ber\big(p^*(x)\big)
+  \]
 
-  \vspace{1em}
-  We would like a \alert{computational analogue} of this,
-  using a comparator class.
+  \pause
+  \vspace{0.5em}
+  \alert{Computational analogue}: we can't get $p^*$, but we can get some $p$ with
+  \[
+    y \mid p(x) \;\approx_{\C}\; \Ber\big(p(x)\big)
+  \]
+  {\color{muted}$\approx_{\C}$: indistinguishable to every function in $\C$.}
 
   \vspace{1.5em}
   \textcolor{muted}{We'll return to this after a detour through multigroup fairness.}

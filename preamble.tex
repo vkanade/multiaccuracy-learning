@@ -25,6 +25,22 @@
 \setbeamertemplate{itemize items}{\color{muted}--}
 \setlength{\parskip}{0.4em}
 
+% ---------- Outline ----------
+% Outline after the title, then again at each later section with the
+% current section in the accent colour and the rest in grey.
+\setbeamertemplate{section in toc}{%
+  {\color{muted}\inserttocsectionnumber.}\hspace{0.6em}\inserttocsection\par}
+\setbeamercolor{section in toc}{fg=ink}
+\setbeamertemplate{section in toc shaded}[default][100]
+\setbeamercolor{section in toc shaded}{fg=muted}
+\AtBeginSection{%
+  \ifnum\value{section}>1
+    {\setbeamercolor{section in toc}{fg=accent}
+     \begin{frame}{Outline}
+       \tableofcontents[currentsection]
+     \end{frame}}
+  \fi}
+
 % ---------- Notation ----------
 \newcommand{\X}{\mathcal{X}}
 \newcommand{\D}{\mathcal{D}}
@@ -50,7 +66,7 @@
   note/.style={font=\footnotesize, text=muted, align=center},
 }
 
-\title{How Global Calibration Strengthens Multiaccuracy}
-\author{Author Name}
-\institute{}
-\date{MSR}
+\title{Connections between Multigroup Fairness and Learning}
+\author{Varun Kanade}
+\institute{University of Oxford}
+\date{}
