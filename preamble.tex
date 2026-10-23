@@ -11,7 +11,9 @@
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}{%
-  \hfill\usebeamerfont{footline}\color{muted}\scriptsize\insertframenumber\hspace{1.2em}\vspace{0.8em}}
+  \usebeamerfont{footline}\color{muted}\scriptsize
+  \hspace{1cm}\theslidecite\global\let\theslidecite\relax
+  \hfill\insertframenumber\hspace{1.2em}\vspace{0.8em}}
 \setbeamercolor{normal text}{fg=ink}
 \setbeamercolor{frametitle}{fg=ink}
 \setbeamercolor{title}{fg=ink}
@@ -88,6 +90,11 @@
   \fi}
 \makeatother
 \newcommand{\slideref}[1]{\ref{slide:#1}}
+
+% Small grey citation at the bottom left, level with the page number.
+% Printed by the footline, so it takes no space in the slide body.
+\let\theslidecite\relax
+\newcommand{\slidecite}[1]{\gdef\theslidecite{#1}\ignorespaces}
 
 % ---------- Diagram styles ----------
 \tikzset{

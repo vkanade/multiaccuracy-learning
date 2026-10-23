@@ -30,7 +30,9 @@
   \[
     \E[\,y \mid p(x)\,] = p(x).
   \]
+  Whenever $p(x) = 0.7$, roughly 70\% of the observed $y$'s are $1$.
 
+  \vspace{0.5em}
   Expected calibration error:
   \[
     \ECE(p) = \E\Big[\,\big|\,\E[\,y \mid p(x)\,] - p(x)\,\big|\,\Big]
@@ -38,6 +40,9 @@
 
   \textcolor{muted}{Also a global notion: the constant $p \equiv \E[y]$
   is calibrated too.}
+
+  \vspace{0.5em}
+  It is easy to check that $\EAE(p) \le \ECE(p)$.
 \end{frame}
 
 % Source: notes/2026-10-22-multiaccuracy.jpg (notes 6-7)
@@ -63,6 +68,8 @@
   \[
     \big|\,\E[\,p(x) - y \mid x \in g\,]\,\big| \approx \text{small}
   \]
+
+  \slidecite{H\'ebert-Johnson, Kim, Reingold, Rothblum '17}
 \end{frame}
 
 % Source: notes/2026-10-22-multicalibration.jpg (note 8)
@@ -168,9 +175,10 @@
     \big|\,\E[\,g(x)\,(p(x) - y) \mid p(x) = v\,]\,\big| \le \tau
     \qquad \forall g \in \G,\ \forall v .
   \]
+  \slidecite{H\'ebert-Johnson, Kim, Reingold, Rothblum '17}
 
   \pause
-  \vspace{1em}
+  \vspace{0.3em}
   \alert{Fairness:} ``70\%'' should mean 70\% in every group,
   e.g.\ for state-school students too.
 \end{frame}

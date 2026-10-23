@@ -13,6 +13,7 @@
   $\C$, \ $c : \X \to \{0,1\}$:\\
   a hypothesis class, as in agnostic learning
   \textcolor{muted}{(slide~\slideref{relative-guarantee}; halfspaces, decision trees, \dots)}.
+  \slidecite{Trevisan, Tulsiani, Vadhan '09}
 
   \pause
   \vspace{0.8em}
@@ -57,6 +58,10 @@
 
       To functions in $\C$, on a strip, $(x,y)$ looks like $(x,\tilde y)$
       where $\tilde y \sim \Ber(v)$.
+
+      \vspace{0.4em}
+      This is \alert{swap agnostic learning}: stronger than agnostic learning
+      \textcolor{muted}{(slide~\slideref{swap})}.
     \end{column}
   \end{columns}
 
@@ -80,6 +85,8 @@
   \vspace{0.5em}
   \alert{Key step:} find a $c \in \C$ ($g \in \G$) correlated with
   $y - p(x)$, a learning problem.
+
+  \slidecite{H\'ebert-Johnson, Kim, Reingold, Rothblum '17}
 \end{frame}
 
 \begin{frame}{Weak agnostic learning}\slidelabel{weak-learning}
@@ -96,7 +103,7 @@
 
   \pause
   \vspace{0.6em}
-  \textbf{Theorem} \textcolor{muted}{(Kalai--Kanade '09; Feldman '10)}\\
+  \textbf{Theorem} \textcolor{muted}{(Kalai--\textcolor{ink}{K.}\ '09; Feldman '10)}\\
   Weak agnostic learning is equivalent to strong agnostic learning,
   \alert{even for a fixed marginal distribution over $\X$}.
 \end{frame}
@@ -121,6 +128,8 @@
 
   The \alert{marginal over $\X$ is unchanged}: only the labels change
   \textcolor{muted}{(slide~\slideref{weak-learning})}.
+
+  \slidecite{H\'ebert-Johnson, Kim, Reingold, Rothblum '17}
 \end{frame}
 
 \begin{frame}{Correcting the violation}
@@ -136,6 +145,8 @@
   \vspace{0.8em}
   Repeat until the auditor finds nothing. The loss is $\ge 0$,
   so \alert{this stops}.
+
+  \slidecite{H\'ebert-Johnson, Kim, Reingold, Rothblum '17}
 \end{frame}
 
 \begin{frame}{Multigroup fairness \& learning}\slidelabel{swap}
